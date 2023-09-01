@@ -1,0 +1,80 @@
+svg{
+    margin-top: -3em;
+    margin-bottom: -2em;
+}
+.kedua{
+    margin-bottom: -3em;
+}
+
+.navbar{
+    margin-bottom: 20em !important;
+}
+
+.row{
+    row-gap: 1.5em;
+}
+
+h3::after{
+    display: block;
+    content: '';
+    width: 50%;
+    background-color: #fff;
+    height: 5px;
+    margin: 0.25em auto;
+    border-radius: 5px;
+}
+
+.project{
+    background-color: lightgray;
+}
+
+@media screen and (min-width: 992px){
+    .nav-link{
+        padding: 1em 2em !important;
+    }
+    .nav-link::after{
+        opacity: 1;
+        content: '';
+        display: block;
+        background-color: white;
+        width: 70%;
+        margin: auto;
+        height: 3px;
+        margin-bottom: -5px;
+        /* margin-top: 3px; */
+        border-radius: 5px;
+    }
+    .nav-link::after{
+        opacity: 0;
+    }
+    .nav-link:hover::after{
+        opacity: 1;
+        transition: .5s;
+    }
+    
+    [aria-selected=true]{
+        color: rgb(255, 255, 255) !important;
+        text-shadow: 1px 1px 2px white;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-bottom: 2px solid white;
+        margin: 0;
+        /* margin-bottom: -7px; */
+    }
+    nav{
+        padding: 0 !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .nav-link:hover{
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    .nav-link:active{
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    .nav-link{
+        border-radius: 5px;
+        padding: 0.5em;
+        margin-top: 0.25em;
+    }
+}
