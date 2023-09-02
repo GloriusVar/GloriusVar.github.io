@@ -114,21 +114,28 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-8">
-                    <form action="" method="get" enctype="multipart/form-data">
+                    <div class="alert alert-secondary alert-dismissible fade show d-none" role="alert">
+                        <strong>Sudah terkirim</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    <form action="" method="get" enctype="multipart/form-data" name="form-contact">
                         <div class="mb-3">
                             <label for="email" class="form-label" >nama: </label>
-                            <input type="email" class="form-control">
+                            <input type="text" class="form-control" name="nama">
                         </div>
                         <div class=" mb-3">
                             <label for="email" class="form-label" >email: </label>
-                            <input type="email" class="form-control">
+                            <input type="email" class="form-control" name="email">
                         </div>
                         <div class="mb-4">
                             <label for="pesan" class="form-label">Pesan</label>
-                            <textarea name="" id=""  rows="3" class="form-control"></textarea>
+                            <textarea name="" id=""  rows="3" class="form-control" name="pesan"></textarea>
                         </div>
                         <div class="mb-3 text-center">
-                            <button type="button" class="btn btn-secondary ">Kirim !</button>
+                            <button type="submit" class="btn btn-secondary btn-kirim">Kirim !</button>
+                            <button type="submit" class="btn btn-secondary d-none btn-loading">
+                                <span class="spinner-border spinner-border-sm"></span> Loading ... 
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -160,6 +167,34 @@
             pil[klik].setAttribute('aria-selected', 'true');
         };
 
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwfvTHm3OpZxTqDVGBjR5xCPeekrizjRpK-ptjb9mpyO3692YShQjHrtPvxPEr7IzWz/exec'
+        const form = document.forms['form-contact']
+
+        const al = document.querySelector('.alert');
+        const load = document.querySelector('.btn-loading');
+        const send = document.querySelector('.btn-kirim');
+        const nama = 
+
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            al.classList.remove('d-none');
+            send.classList.add('d-none');
+            load.classList.toggle('d-none');
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)}).then(response => {
+
+                send.classList.toggle('d-none');
+                load.classList.toggle('d-none');
+                al.classList.toggle('d-none');
+
+                form.reset();
+
+                console.log('Success!', response)})
+                .catch(error => console.error('Error!', error.message));
+            
+
+        });
         
     </script>
 
